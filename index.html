@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="LuxeShop — Premium Shopping Experience. Discover curated collections of luxury goods with exceptional quality.">
+    <title>LuxeShop — Premium Shopping</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- LOADING SCREEN -->
+    <div id="loading-screen">
+        <div class="loading-logo">Luxe<span>Shop</span></div>
+        <div class="loading-bar">
+            <div class="loading-fill"></div>
+        </div>
+    </div>
+
+    <!-- TOAST CONTAINER -->
+    <div id="toast-container"></div>
+
+    <!-- CART OVERLAY -->
+    <div id="cart-overlay" onclick="toggleCart()"></div>
+
+    <!-- CART SIDEBAR -->
+    <div id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="cart-close" onclick="toggleCart()">✕</button>
+        </div>
+        <div class="cart-items" id="cart-items-container">
+            <div class="cart-empty">
+                <div class="cart-empty-icon">🛒</div>
+                <p>Your cart is empty</p>
+                <p style="font-size:13px;margin-top:8px;color:var(--text3)">Start shopping to add items</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-subtotal"><span>Subtotal</span><span id="cart-subtotal">$0.00</span></div>
+            <div class="cart-subtotal"><span>Shipping</span><span style="color:var(--green)">Free</span></div>
+            <div class="cart-total"><span>Total</span><span class="cart-total-price" id="cart-total">$0.00</span></div>
+            <button class="btn btn-primary" style="width:100%;justify-content:center;margin-bottom:12px"
+                onclick="navigate('checkout');toggleCart()">Checkout →</button>
+            <button class="btn btn-secondary" style="width:100%;justify-content:center"
+                onclick="navigate('cart');toggleCart()">View Cart</button>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav id="nav">
+        <div class="container">
+            <div class="nav-inner">
+                <div class="nav-logo" onclick="navigate('home')">Luxe<span>Shop</span></div>
+                <div class="nav-links">
+                    <span class="nav-link" onclick="navigate('home')">Home</span>
+                    <span class="nav-link" onclick="navigate('listing')">Shop</span>
+                    <span class="nav-link" onclick="navigate('wishlist')">Wishlist</span>
+                    <span class="nav-link" onclick="navigate('tracking')">Track Order</span>
+                </div>
+                <div class="nav-search">
+                    <span class="nav-search-icon">🔍</span>
+                    <input type="text" placeholder="Search for products, brands..." oninput="handleSearch(this.value)">
+                </div>
+                <div class="nav-actions">
+                    <button class="nav-btn" title="Dark Mode" onclick="toggleTheme()" id="theme-btn">🌙</button>
+                    <button class="nav-btn" title="Wishlist" onclick="navigate('wishlist')">
+                        ♡
+                        <span class="nav-badge" id="wishlist-count">0</span>
+                    </button>
+                    <button class="nav-btn" title="Cart" onclick="toggleCart()">
+                        🛒
+                        <span class="nav-badge" id="cart-count">0</span>
+                    </button>
+                    <button class="nav-btn" title="Account" onclick="navigate('login')">👤</button>
+                    <button class="nav-mobile-toggle" onclick="toggleMobileMenu()">☰</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div id="mobile-menu">
+        <span class="nav-link" onclick="navigate('home');toggleMobileMenu()">🏠 Home</span>
+        <span class="nav-link" onclick="navigate('listing');toggleMobileMenu()">🛍 Shop</span>
+        <span class="nav-link" onclick="navigate('wishlist');toggleMobileMenu()">♡ Wishlist</span>
+        <span class="nav-link" onclick="navigate('tracking');toggleMobileMenu()">📦 Track Order</span>
+        <span class="nav-link" onclick="navigate('admin');toggleMobileMenu()">⚙️ Admin</span>
+    </div>
+
+    <!-- ===================== PAGE: HOME ===================== -->
+    <div id="page-home" class="page active">
+
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-bg">
+                <div class="hero-bg-gradient"></div>
+                <div class="hero-orb hero-orb-1"></div>
+                <div class="hero-orb hero-orb-2"></div>
+            </div>
+            <div class="container" style="width:100%">
+                <div class="hero-inner">
+                    <div class="hero-content">
+                        <div class="hero-tag">
+                            <span class="hero-tag-dot"></span>
+                            New Arrivals · Summer 2025
+                        </div>
+                        <h1 class="hero-title">
+                            Discover<br>
+                            <span class="line2">Timeless</span><br>
+                            Elegance
+                        </h1>
+                        <p class="hero-desc">Curated collections from the world's finest brands. Experience luxury
+                            shopping redefined with premium quality and exceptional craftsmanship.</p>
+                        <div class="hero-actions">
+                            <button class="btn btn-primary" onclick="navigate('listing')">Explore Collections →</button>
+                            <button class="btn btn-secondary" onclick="navigate('listing')">View Lookbook</button>
+                        </div>
+                        <div class="hero-stats">
+                            <div>
+                                <div class="hero-stat-val">50K+</div>
+                                <div class="hero-stat-label">Happy Customers</div>
+                            </div>
+                            <div>
+                                <div class="hero-stat-val">200+</div>
+                                <div class="hero-stat-label">Premium Brands</div>
+                            </div>
+                            <div>
+                                <div class="hero-stat-val">4.9★</div>
+                                <div class="hero-stat-label">Average Rating</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <div class="hero-card-main">
+                            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&q=80"
+                                alt="Featured Product">
+                            <div class="hero-card-badge">⭐ Editor's Pick</div>
+                            <div class="hero-card-info">
+                                <h3>Parisian Elegance</h3>
+                                <p>New Summer Collection 2025</p>
+                            </div>
+                        </div>
+                        <div class="hero-floating-cards">
+                            <div class="hero-mini-card" onclick="navigate('product')">
+                                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=100&q=80"
+                                    alt="">
+                                <div class="hero-mini-card-name">Premium Watch</div>
+                                <div class="hero-mini-card-price">$299</div>
+                            </div>
+                            <div class="hero-mini-card" onclick="navigate('product')">
+                                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=100&q=80" alt="">
+                                <div class="hero-mini-card-name">Air Runner Pro</div>
+                                <div class="hero-mini-card-price">$179</div>
+                            </div>
+                            <div class="hero-mini-card" onclick="navigate('product')">
+                                <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=100&q=80" alt="">
+                                <div class="hero-mini-card-name">Leather Tote</div>
+                                <div class="hero-mini-card-price">$449</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TICKER -->
+        <div class="ticker">
+            <div class="ticker-inner" id="ticker-inner"></div>
+        </div>
+
+        <!-- CATEGORIES -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <div class="tag tag-accent" style="margin-bottom:12px">Browse</div>
+                        <h2 class="section-title">Shop by Category</h2>
+                        <p class="section-sub">Find exactly what you're looking for across our premium collections</p>
+                    </div>
+                    <button class="btn btn-secondary" onclick="navigate('listing')">View All</button>
+                </div>
+                <div class="categories-grid" id="categories-grid"></div>
+            </div>
+        </section>
+
+        <!-- FEATURED PRODUCTS -->
+        <section class="section" style="background:var(--bg2);padding:96px 0">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <div class="tag tag-accent" style="margin-bottom:12px">Trending</div>
+                        <h2 class="section-title">Featured Products</h2>
+                    </div>
+                    <button class="btn btn-secondary" onclick="navigate('listing')">All Products</button>
+                </div>
+                <div class="filter-bar">
+                    <button class="filter-btn active" onclick="filterProducts('All',this)">All</button>
+                    <button class="filter-btn" onclick="filterProducts('Fashion',this)">Fashion</button>
+                    <button class="filter-btn" onclick="filterProducts('Electronics',this)">Electronics</button>
+                    <button class="filter-btn" onclick="filterProducts('Accessories',this)">Accessories</button>
+                    <button class="filter-btn" onclick="filterProducts('Home',this)">Home</button>
+                    <div class="sort-wrap" style="margin-left:auto">
+                        <select class="sort-select" onchange="sortProducts(this.value)">
+                            <option value="featured">Sort: Featured</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="rating">Best Rating</option>
+                            <option value="newest">Newest</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="products-grid" id="home-products-grid"></div>
+            </div>
+        </section>
+
+        <!-- PROMO BANNER -->
+        <section class="section">
+            <div class="container">
+                <div class="promo-banner">
+                    <div class="promo-content">
+                        <span class="promo-tag">Limited Time · 30% OFF</span>
+                        <h2 class="promo-title">Summer Sale<br>Ends Sunday</h2>
+                        <p class="promo-desc">Don't miss our biggest sale of the season. Premium pieces at unbeatable
+                            prices — while stocks last.</p>
+                        <button class="btn btn-primary" onclick="navigate('listing')">Shop the Sale</button>
+                    </div>
+                    <div class="promo-visual">
+                        <div class="promo-orb"></div>
+                        <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&q=80" alt="Sale">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- REVIEWS -->
+        <section class="section" style="background:var(--bg2);padding:96px 0">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <div class="tag tag-accent" style="margin-bottom:12px">Reviews</div>
+                        <h2 class="section-title">What Our<br>Customers Say</h2>
+                    </div>
+                </div>
+                <div class="reviews-grid" id="reviews-grid"></div>
+            </div>
+        </section>
+
+        <!-- NEWSLETTER -->
+        <section class="section">
+            <div class="container">
+                <div class="newsletter">
+                    <div class="tag tag-accent" style="margin-bottom:16px;display:inline-flex">Exclusive Offers</div>
+                    <h2 class="section-title">Join the LuxeShop<br>Inner Circle</h2>
+                    <p class="section-sub" style="margin:12px auto 0;text-align:center">Get early access to sales,
+                        exclusive drops, and style inspiration delivered to your inbox.</p>
+                    <div class="newsletter-form">
+                        <input class="newsletter-input" type="email" placeholder="Enter your email address">
+                        <button class="btn btn-primary" onclick="subscribeNewsletter()">Subscribe</button>
+                    </div>
+                    <p style="font-size:12px;color:var(--text2);margin-top:12px">No spam. Unsubscribe anytime. 🔒 Your
+                        data is safe.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="container">
+                <div class="footer-grid">
+                    <div>
+                        <div class="footer-brand">Luxe<span>Shop</span></div>
+                        <p class="footer-desc">Redefining luxury shopping with curated collections, exceptional quality,
+                            and an unmatched experience.</p>
+                        <div class="footer-social">
+                            <div class="social-btn" title="Instagram">📸</div>
+                            <div class="social-btn" title="Twitter">𝕏</div>
+                            <div class="social-btn" title="Facebook">f</div>
+                            <div class="social-btn" title="Pinterest">P</div>
+                            <div class="social-btn" title="YouTube">▶</div>
+                        </div>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Shop</h4>
+                        <ul>
+                            <li><a onclick="navigate('listing')">New Arrivals</a></li>
+                            <li><a onclick="navigate('listing')">Best Sellers</a></li>
+                            <li><a onclick="navigate('listing')">Sale</a></li>
+                            <li><a onclick="navigate('listing')">Collections</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a>Help Center</a></li>
+                            <li><a onclick="navigate('tracking')">Track Order</a></li>
+                            <li><a>Returns</a></li>
+                            <li><a>Size Guide</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a>About Us</a></li>
+                            <li><a>Careers</a></li>
+                            <li><a>Press</a></li>
+                            <li><a onclick="navigate('admin')">Admin</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <span>© 2025 LuxeShop. All rights reserved.</span>
+                    <div class="payment-icons">💳 🔒 ✓</div>
+                    <span>Privacy · Terms · Cookies</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ===================== PAGE: LISTING ===================== -->
+    <div id="page-listing" class="page">
+        <div style="padding-top:var(--nav-h)">
+            <div class="container">
+                <div class="breadcrumb">
+                    <span class="breadcrumb-item" onclick="navigate('home')">Home</span>
+                    <span class="breadcrumb-sep">›</span>
+                    <span class="breadcrumb-item">Shop</span>
+                </div>
+                <div class="section-header" style="margin-bottom:32px">
+                    <div>
+                        <h1 class="section-title">All Products</h1>
+                        <p class="section-sub" id="listing-count">Showing all products</p>
+                    </div>
+                </div>
+                <div class="listing-layout" style="padding-bottom:80px">
+                    <aside class="sidebar-filters">
+                        <h3 style="font-size:16px;font-weight:600;margin-bottom:24px">Filters</h3>
+                        <div class="filter-group">
+                            <div class="filter-group-title">Category</div>
+                            <label class="filter-check"><input type="checkbox" checked> All</label>
+                            <label class="filter-check"><input type="checkbox"> Fashion</label>
+                            <label class="filter-check"><input type="checkbox"> Electronics</label>
+                            <label class="filter-check"><input type="checkbox"> Accessories</label>
+                            <label class="filter-check"><input type="checkbox"> Home & Living</label>
+                            <label class="filter-check"><input type="checkbox"> Footwear</label>
+                        </div>
+                        <div class="filter-group">
+                            <div class="filter-group-title">Price Range</div>
+                            <input type="range" class="price-slider" min="0" max="1000" value="800"
+                                oninput="this.nextElementSibling.children[1].textContent='$'+this.value">
+                            <div class="price-labels"><span>$0</span><span>$800</span></div>
+                        </div>
+                        <div class="filter-group">
+                            <div class="filter-group-title">Color</div>
+                            <div class="color-swatches">
+                                <div class="swatch active" style="background:#1a1814" title="Black"></div>
+                                <div class="swatch" style="background:#fff;border:1px solid var(--border)"
+                                    title="White"></div>
+                                <div class="swatch" style="background:#c4873a" title="Gold"></div>
+                                <div class="swatch" style="background:#2a5298" title="Navy"></div>
+                                <div class="swatch" style="background:#8b4513" title="Brown"></div>
+                                <div class="swatch" style="background:#d44" title="Red"></div>
+                                <div class="swatch" style="background:#2d8a4e" title="Green"></div>
+                                <div class="swatch" style="background:#888" title="Gray"></div>
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <div class="filter-group-title">Rating</div>
+                            <label class="filter-check"><input type="checkbox"> ⭐⭐⭐⭐⭐ (5)</label>
+                            <label class="filter-check"><input type="checkbox" checked> ⭐⭐⭐⭐+ (4+)</label>
+                            <label class="filter-check"><input type="checkbox"> ⭐⭐⭐+ (3+)</label>
+                        </div>
+                        <div class="filter-group">
+                            <div class="filter-group-title">Availability</div>
+                            <label class="filter-check"><input type="checkbox" checked> In Stock</label>
+                            <label class="filter-check"><input type="checkbox"> Pre-Order</label>
+                        </div>
+                        <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:8px">Apply
+                            Filters</button>
+                        <button class="btn btn-ghost" style="width:100%;justify-content:center">Clear All</button>
+                    </aside>
+                    <div>
+                        <div class="filter-bar">
+                            <button class="filter-btn active" onclick="filterProducts('All',this)">All</button>
+                            <button class="filter-btn" onclick="filterProducts('Fashion',this)">Fashion</button>
+                            <button class="filter-btn" onclick="filterProducts('Electronics',this)">Electronics</button>
+                            <button class="filter-btn" onclick="filterProducts('Accessories',this)">Accessories</button>
+                            <button class="filter-btn" onclick="filterProducts('Home',this)">Home</button>
+                            <div class="sort-wrap" style="margin-left:auto">
+                                <select class="sort-select" onchange="sortProducts(this.value)">
+                                    <option>Sort: Featured</option>
+                                    <option>Price: Low to High</option>
+                                    <option>Price: High to Low</option>
+                                    <option>Best Rating</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="products-grid" id="listing-products-grid"
+                            style="grid-template-columns:repeat(3,1fr)"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== PAGE: PRODUCT DETAIL ===================== -->
+    <div id="page-product" class="page">
+        <div style="padding-top:var(--nav-h)">
+            <div class="container" style="padding-top:24px;padding-bottom:80px">
+                <div class="breadcrumb">
+                    <span class="breadcrumb-item" onclick="navigate('home')">Home</span>
+                    <span class="breadcrumb-sep">›</span>
+                    <span class="breadcrumb-item" onclick="navigate('listing')">Shop</span>
+                    <span class="breadcrumb-sep">›</span>
+                    <span class="breadcrumb-item">Product Details</span>
+                </div>
+                <div class="product-detail-grid">
+                    <div>
+                        <div class="gallery-main">
+                            <img id="gallery-main-img"
+                                src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800&q=80"
+                                alt="Product">
+                        </div>
+                        <div class="gallery-thumbs">
+                            <div class="gallery-thumb active"
+                                onclick="switchGallery(this,'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&q=80')">
+                                <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=200&q=80" alt="">
+                            </div>
+                            <div class="gallery-thumb"
+                                onclick="switchGallery(this,'https://images.unsplash.com/photo-1559721073-7eed01fea3c7?w=400&q=80')">
+                                <img src="https://images.unsplash.com/photo-1559721073-7eed01fea3c7?w=200&q=80" alt="">
+                            </div>
+                            <div class="gallery-thumb"
+                                onclick="switchGallery(this,'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=400&q=80')">
+                                <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=200&q=80"
+                                    alt="">
+                            </div>
+                            <div class="gallery-thumb"
+                                onclick="switchGallery(this,'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&q=80')">
+                                <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=200&q=80"
+                                    alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-info">
+                        <div class="pd-brand">Luxe Collection</div>
+                        <h1 class="pd-name">Premium Italian Leather Tote Bag</h1>
+                        <div class="pd-rating-row">
+                            <div class="stars">★★★★★</div>
+                            <span style="font-size:14px;font-weight:600">4.9</span>
+                            <span style="font-size:13px;color:var(--text2)">(248 reviews)</span>
+                            <span class="tag tag-green" style="margin-left:8px">In Stock</span>
+                        </div>
+                        <div class="pd-price-row">
+                            <span class="pd-price">$449</span>
+                            <span class="pd-price-old">$599</span>
+                            <span class="tag tag-red" style="margin-left:12px">25% OFF</span>
+                        </div>
+                        <p style="font-size:15px;color:var(--text2);line-height:1.7;margin-bottom:20px">
+                            Crafted from the finest full-grain Italian leather, this iconic tote embodies effortless
+                            sophistication. Features hand-stitched details, solid brass hardware, and a spacious
+                            interior with custom suede lining.
+                        </p>
+                        <div class="pd-divider"></div>
+                        <div class="pd-option-label">Size</div>
+                        <div class="size-opts">
+                            <div class="size-opt" onclick="selectSize(this)">Small</div>
+                            <div class="size-opt active" onclick="selectSize(this)">Medium</div>
+                            <div class="size-opt" onclick="selectSize(this)">Large</div>
+                        </div>
+                        <div class="pd-option-label">Color</div>
+                        <div class="color-swatches" style="margin-bottom:24px">
+                            <div class="swatch active" style="background:#8b4513" title="Tan"></div>
+                            <div class="swatch" style="background:#1a1814" title="Black"></div>
+                            <div class="swatch" style="background:#8b7355" title="Sand"></div>
+                        </div>
+                        <div class="pd-option-label">Quantity</div>
+                        <div class="qty-selector">
+                            <button class="qty-btn" onclick="changeQty(-1)">−</button>
+                            <span class="qty-val" id="pd-qty">1</span>
+                            <button class="qty-btn" onclick="changeQty(1)">+</button>
+                        </div>
+                        <div class="pd-actions">
+                            <button class="btn btn-primary" onclick="addCurrentToCart()">Add to Cart 🛒</button>
+                            <button class="btn btn-secondary" onclick="toggleWishlistItem(0)" id="pd-wish-btn">♡
+                                Wishlist</button>
+                        </div>
+                        <div class="pd-features">
+                            <div class="pd-feature"><span class="pd-feature-icon">🚚</span>Free shipping over $100</div>
+                            <div class="pd-feature"><span class="pd-feature-icon">↩️</span>30-day free returns</div>
+                            <div class="pd-feature"><span class="pd-feature-icon">🔒</span>Secure payment</div>
+                            <div class="pd-feature"><span class="pd-feature-icon">✓</span>Authenticity guaranteed</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TABS -->
+                <div class="pd-tabs">
+                    <div class="pd-tab-list">
+                        <div class="pd-tab active" onclick="switchTab(this,'tab-desc')">Description</div>
+                        <div class="pd-tab" onclick="switchTab(this,'tab-specs')">Specifications</div>
+                        <div class="pd-tab" onclick="switchTab(this,'tab-reviews')">Reviews (248)</div>
+                    </div>
+                </div>
+                <div id="tab-desc" class="pd-tab-content active">
+                    <p style="font-size:15px;color:var(--text2);line-height:1.8;max-width:720px">
+                        This premium tote bag is a masterpiece of Italian craftsmanship. Each piece is handmade by
+                        skilled artisans using traditional techniques passed down through generations. The full-grain
+                        leather develops a beautiful patina over time, making each bag uniquely yours.
+                    </p>
+                    <ul style="margin-top:20px;display:grid;gap:10px;max-width:500px">
+                        <li style="display:flex;gap:10px;font-size:14px;color:var(--text2)"><span
+                                style="color:var(--accent)">✓</span> Full-grain Italian leather exterior</li>
+                        <li style="display:flex;gap:10px;font-size:14px;color:var(--text2)"><span
+                                style="color:var(--accent)">✓</span> Custom suede interior lining</li>
+                        <li style="display:flex;gap:10px;font-size:14px;color:var(--text2)"><span
+                                style="color:var(--accent)">✓</span> Solid brass hardware with antique finish</li>
+                        <li style="display:flex;gap:10px;font-size:14px;color:var(--text2)"><span
+                                style="color:var(--accent)">✓</span> Interior zip pocket and card slots</li>
+                        <li style="display:flex;gap:10px;font-size:14px;color:var(--text2)"><span
+                                style="color:var(--accent)">✓</span> Adjustable shoulder strap included</li>
+                    </ul>
+                </div>
+                <div id="tab-specs" class="pd-tab-content">
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:600px">
+                        <div style="background:var(--bg2);border-radius:12px;padding:16px">
+                            <div style="font-size:12px;color:var(--text2);margin-bottom:4px">Material</div>
+                            <div style="font-size:14px;font-weight:500">Full-Grain Leather</div>
+                        </div>
+                        <div style="background:var(--bg2);border-radius:12px;padding:16px">
+                            <div style="font-size:12px;color:var(--text2);margin-bottom:4px">Dimensions</div>
+                            <div style="font-size:14px;font-weight:500">38 × 28 × 14 cm</div>
+                        </div>
+                        <div style="background:var(--bg2);border-radius:12px;padding:16px">
+                            <div style="font-size:12px;color:var(--text2);margin-bottom:4px">Weight</div>
+                            <div style="font-size:14px;font-weight:500">0.9 kg</div>
+                        </div>
+                        <div style="background:var(--bg2);border-radius:12px;padding:16px">
+                            <div style="font-size:12px;color:var(--text2);margin-bottom:4px">Origin</div>
+                            <div style="font-size:14px;font-weight:500">Florence, Italy</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab-reviews" class="pd-tab-content">
+                    <div id="reviews-section" style="display:grid;gap:20px;max-width:720px"></div>
+                </div>
+
+                <!-- RELATED PRODUCTS -->
+                <h2 class="section-title" style="margin-top:72px;margin-bottom:32px">You May Also Like</h2>
+                <div class="products-grid" id="related-products"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== PAGE: CART ===================== -->
+    <div id="page-cart" class="page">
+        <div style="padding-top:var(--nav-h)">
+            <div class="container" style="padding-top:24px;padding-bottom:80px">
+                <h1 class="section-title" style="margin-bottom:32px">Shopping Cart</h1>
+                <div class="cart-layout">
+                    <div>
+                        <div class="cart-table-head">
+                            <span>Product</span><span class="cell-center">Price</span><span
+                                class="cell-center">Quantity</span><span class="cell-center">Total</span><span></span>
+                        </div>
+                        <div id="full-cart-items"></div>
+                        <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap">
+                            <button class="btn btn-secondary" onclick="navigate('listing')">← Continue Shopping</button>
+                            <button class="btn btn-ghost" onclick="clearCart()">Clear Cart</button>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="order-summary">
+                            <h3>Order Summary</h3>
+                            <div class="coupon-row">
+                                <input class="coupon-input" type="text" placeholder="Enter coupon code">
+                                <button class="coupon-btn" onclick="applyCoupon()">Apply</button>
+                            </div>
+                            <div class="summary-row"><span>Subtotal</span><span id="cart-page-subtotal">$0.00</span>
+                            </div>
+                            <div class="summary-row"><span>Shipping</span><span style="color:var(--green)">Free</span>
+                            </div>
+                            <div class="summary-row"><span>Tax (8%)</span><span id="cart-page-tax">$0.00</span></div>
+                            <div class="summary-row" id="discount-row" style="display:none;color:var(--green)">
+                                <span>Discount</span><span id="discount-val">-$0</span>
+                            </div>
+                            <div class="summary-total-row"><span>Total</span><span class="summary-total-price"
+                                    id="cart-page-total">$0.00</span></div>
+                            <button class="btn btn-primary" style="width:100%;justify-content:center"
+                                onclick="navigate('checkout')">Proceed to Checkout →</button>
+                            <div style="display:flex;justify-content:center;gap:16px;margin-top:16px;font-size:22px">💳
+                                🔒</div>
+                            <p style="text-align:center;font-size:12px;color:var(--text3);margin-top:8px">Secure
+                                encrypted checkout</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== PAGE: CHECKOUT ===================== -->
+    <div id="page-checkout" class="page">
+        <div style="padding-top:var(--nav-h)">
+            <div class="container" style="padding-top:24px;padding-bottom:80px">
+                <h1 class="section-title" style="margin-bottom:32px">Checkout</h1>
+                <div class="checkout-layout">
+                    <div>
+                        <!-- Shipping -->
+                        <div class="checkout-form" style="margin-bottom:24px">
+                            <h2 class="checkout-section-title"><span class="checkout-step-num">1</span>Shipping
+                                Information</h2>
+                            <div class="form-grid">
+                                <div class="form-group"><label class="form-label">First Name</label><input
+                                        class="form-input" placeholder="John"></div>
+                                <div class="form-group"><label class="form-label">Last Name</label><input
+                                        class="form-input" placeholder="Doe"></div>
+                                <div class="form-group full"><label class="form-label">Email Address</label><input
+                                        class="form-input" placeholder="john@example.com" type="email"></div>
+                                <div class="form-group full"><label class="form-label">Street Address</label><input
+                                        class="form-input" placeholder="123 Main Street, Apt 4B"></div>
+                                <div class="form-group"><label class="form-label">City</label><input class="form-input"
+                                        placeholder="New York"></div>
+                                <div class="form-group"><label class="form-label">ZIP Code</label><input
+                                        class="form-input" placeholder="10001"></div>
+                                <div class="form-group"><label class="form-label">Country</label><input
+                                        class="form-input" placeholder="United States"></div>
+                                <div class="form-group"><label class="form-label">Phone</label><input class="form-input"
+                                        placeholder="+1 234 567 8900"></div>
+                            </div>
+                        </div>
+                        <!-- Payment -->
+                        <div class="checkout-form">
+                            <h2 class="checkout-section-title"><span class="checkout-step-num">2</span>Payment Method
+                            </h2>
+                            <div class="payment-methods">
+                                <div class="pay-method active" onclick="selectPayMethod(this)"><span
+                                        class="pay-method-icon">💳</span>Credit Card</div>
+                                <div class="pay-method" onclick="selectPayMethod(this)"><span
+                                        class="pay-method-icon">🏦</span>Bank Transfer</div>
+                                <div class="pay-method" onclick="selectPayMethod(this)"><span
+                                        class="pay-method-icon">📱</span>Digital Wallet</div>
+                            </div>
+                            <!-- Card Preview -->
+                            <div class="card-preview">
+                                <div class="card-preview-bg"></div>
+                                <div style="position:relative;z-index:1">
+                                    <div
+                                        style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+                                        <div class="card-chip"></div>
+                                        <span
+                                            style="font-family:var(--font-display);font-size:20px;font-weight:700;opacity:0.8">VISA</span>
+                                    </div>
+                                    <div class="card-number" id="card-preview-number">4242 4242 4242 4242</div>
+                                    <div class="card-footer">
+                                        <div>
+                                            <div style="font-size:10px;opacity:0.5;letter-spacing:0.08em">CARD HOLDER
+                                            </div>
+                                            <div id="card-preview-name">JOHN DOE</div>
+                                        </div>
+                                        <div>
+                                            <div style="font-size:10px;opacity:0.5;letter-spacing:0.08em">EXPIRES</div>
+                                            <div id="card-preview-exp">12/27</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group full"><label class="form-label">Card Number</label><input
+                                        class="form-input" placeholder="4242 4242 4242 4242"
+                                        oninput="document.getElementById('card-preview-number').textContent=this.value||'4242 4242 4242 4242'">
+                                </div>
+                                <div class="form-group full"><label class="form-label">Cardholder Name</label><input
+                                        class="form-input" placeholder="John Doe"
+                                        oninput="document.getElementById('card-preview-name').textContent=this.value.toUpperCase()||'JOHN DOE'">
+                                </div>
+                                <div class="form-group"><label class="form-label">Expiry Date</label><input
+                                        class="form-input" placeholder="MM/YY"
+                                        oninput="document.getElementById('card-preview-exp').textContent=this.value||'12/27'">
+                                </div>
+                                <div class="form-group"><label class="form-label">CVV</label><input class="form-input"
+                                        placeholder="•••" type="password" maxlength="4"></div>
+                            </div>
+                            <button class="btn btn-primary"
+                                style="width:100%;justify-content:center;padding:16px;font-size:16px;margin-top:8px"
+                                onclick="placeOrder()">
+                                🔒 Place Order · Pay <span id="checkout-total">$0.00</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Order Summary -->
+                    <div>
+                        <div class="order-summary">
+                            <h3>Order Summary</h3>
+                            <div id="checkout-items" style="margin-bottom:16px"></div>
+                            <div class="summary-row"><span>Subtotal</span><span id="co-subtotal">$0.00</span></div>
+                            <div class="summary-row"><span>Shipping</span><span style="color:var(--green)">Free</span>
+                            </div>
+                            <div class="summary-row"><span>Tax (8%)</span><span id="co-tax">$0.00</span></div>
+                            <div class="summary-total-row"><span>Total</span><span class="summary-total-price"
+                                    id="co-total">$0.00</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== PAGE: LOGIN ===================== -->
+    <div id="page-login" class="page">
+        <div class="auth-layout">
+            <div class="auth-visual">
+                <div class="auth-orbs">
+                    <div class="hero-orb hero-orb-1"
+                        style="background:radial-gradient(circle,rgba(196,135,58,0.25) 0%,transparent 70%)"></div>
+                </div>
+                <div class="auth-visual-content">
+                    <div
+                        style="font-family:var(--font-display);font-size:56px;font-weight:700;margin-bottom:8px;color:#fff">
+                        Luxe<span style="color:var(--accent)">Shop</span></div>
+                    <div class="auth-visual-title">Welcome Back</div>
+                    <p class="auth-visual-desc">Sign in to access your curated wishlist, order history, and exclusive
+                        member offers.</p>
+                    <div style="display:flex;gap:32px;justify-content:center;margin-top:40px">
+                        <div style="text-align:center">
+                            <div style="font-family:var(--font-display);font-size:28px;font-weight:700;color:#fff">50K+
+                            </div>
+                            <div style="font-size:13px;opacity:0.6;margin-top:4px">Members</div>
+                        </div>
+                        <div style="text-align:center">
+                            <div style="font-family:var(--font-display);font-size:28px;font-weight:700;color:#fff">200+
+                            </div>
+                            <div style="font-size:13px;opacity:0.6;margin-top:4px">Brands</div>
+                        </div>
+                        <div style="text-align:center">
+                            <div style="font-family:var(--font-display);font-size:28px;font-weight:700;color:#fff">4.9★
+                            </div>
+                            <div style="font-size:13px;opacity:0.6;margin-top:4px">Rating</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="auth-form-section">
+                <div class="auth-box">
+                    <h1 class="auth-title">Sign In</h1>
+                    <p class="auth-sub">Welcome back! Please enter your details.</p>
+                    <div class="social-auth">
+                        <button class="social-auth-btn" onclick="showToast('Google sign-in demo','info')">🔴
+                            Google</button>
+                        <button class="social-auth-btn" onclick="showToast('Apple sign-in demo','info')">🍎
+                            Apple</button>
+                    </div>
+                    <div class="auth-divider">or continue with email</div>
+                    <div class="auth-form">
+                        <div class="form-group"><label class="form-label">Email Address</label><input class="form-input"
+                                type="email" placeholder="john@example.com" style="width:100%"></div>
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <div class="password-wrap">
+                                <input class="form-input" type="password" placeholder="••••••••" style="width:100%"
+                                    id="login-pass">
+                                <button class="password-toggle" onclick="togglePass('login-pass',this)">👁</button>
+                            </div>
+                        </div>
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+                            <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer"><input
+                                    type="checkbox" style="accent-color:var(--accent)"> Remember me</label>
+                            <a style="font-size:14px;color:var(--accent);cursor:pointer">Forgot password?</a>
+                        </div>
+                        <button class="btn btn-primary"
+                            style="width:100%;justify-content:center;padding:14px;font-size:15px"
+                            onclick="handleLogin()">Sign In</button>
+                    </div>
+                    <div class="auth-link">Don't have an account? <span onclick="navigate('signup')">Sign up for
+                            free</span></div>
+                    <div class="auth-link" style="margin-top:12px"><span onclick="navigate('home')"
+                            style="font-size:13px;opacity:0.7">← Back to shopping</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== PAGE: SIGNUP ===================== -->
+    <div id="page-signup" class="page">
+        <div class="auth-layout">
+            <div class="auth-visual" style="background:linear-gradient(135deg,#1a1814,#2d2820)">
+                <div class="auth-orbs">
+                    <div class="hero-orb hero-orb-1"
+                        style="background:radial-gradient(circle,rgba(196,135,58,0.2) 0%,transparent 70%)"></div>
+                    <div class="hero-orb hero-orb-2"
+                        style="background:radial-gradient(circle,rgba(196,135,58,0.1) 0%,transparent 70%)"></div>
+                </div>
+                <div class="auth-visual-content">
+                    <div style="font-size:64px;margin-bottom:20px">✨</div>
+                    <div class="auth-visual-title">Join LuxeShop</div>
+                    <p class="auth-visual-desc">Create your account and unlock exclusive access to premium collections,
+                        early sales, and personalized recommendations.</p>
+                    <div
+                        style="display:flex;flex-direction:column;gap:12px;margin-top:40px;max-width:280px;margin-left:auto;margin-right:auto">
+                        <div style="display:flex;align-items:center;gap:12px;font-size:14px;opacity:0.8"><span
+                                style="color:var(--accent)">✓</span>Free shipping on first order</div>
+                        <div style="display:flex;align-items:center;gap:12px;font-size:14px;opacity:0.8"><span
+                                style="color:var(--accent)">✓</span>Exclusive member discounts</div>
+                        <div style="display:flex;align-items:center;gap:12px;font-size:14px;opacity:0.8"><span
+                                style="color:var(--accent)">✓</span>Early access to new arrivals</div>
+                        <div style="display:flex;align-items:center;gap:12px;font-size:14px;opacity:0.8"><span
+                                style="color:var(--accent)">✓</span>Priority customer support</div>
+                    </div>
+                </div>
+            </div>
+            <div class="auth-form-section">
+                <div class="auth-box">
+                    <h1 class="auth-title">Create Account</h1>
+                    <p class="auth-sub">Join 50,000+ happy shoppers today.</p>
+                    <div class="social-auth">
+                        <button class="social-auth-btn">🔴 Google</button>
+                        <button class="social-auth-btn">🍎 Apple</button>
+                    </div>
+                    <div class="auth-divider">or sign up with email</div>
+                    <div class="auth-form">
+                        <div class="form-grid" style="margin-bottom:0">
+                            <div class="form-group" style="margin-bottom:16px"><label class="form-label">First
+                                    Name</label><input class="form-input" placeholder="John" style="width:100%"></div>
+                            <div class="form-group" style="margin-bottom:16px"><label class="form-label">Last
+                                    Name</label><input class="form-input" placeholder="Doe" style="width:100%"></div>
+                        </div>
+                        <div class="form-group" style="margin-bottom:16px"><label class="form-label">Email
+                                Address</label><input class="form-input" type="email" placeholder="john@example.com"
+                                style="width:100%"></div>
+                        <div class="form-group" style="margin-bottom:16px">
+                            <label class="form-label">Password</label>
+                            <div class="password-wrap">
+                                <input class="form-input" type="password" placeholder="Minimum 8 characters"
+                                    style="width:100%" id="signup-pass">
+                                <button class="password-toggle" onclick="togglePass('signup-pass',this)">👁</button>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom:20px">
+                            <label
+                                style="display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--text2);cursor:pointer;line-height:1.5">
+                                <input type="checkbox" style="accent-color:var(--accent);margin-top:2px;flex-shrink:0">
+                                I agree to the <span style="color:var(--accent)">Terms of Service</span> and <span
+                                    style="color:var(--accent)">Privacy Policy</span>
+                            </label>
+                        </div>
+                        <button class="btn btn-primary"
+                            style="width:100%;justify-content:center;padding:14px;font-size:15px"
+                            onclick="handleSignup()">Create Account</button>
+                    </div>
+                    <div class="auth-link">Already have an account? <span onclick="navigate('login')">Sign in</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== PAGE: WISHLIST ===================== -->
+    <div id="page-wishlist" class="page">
+        <div style="padding-top:var(--nav-h)">
+            <div class="container" style="padding-top:24px;padding-bottom:80px">
+                <div class="breadcrumb">
+                    <span class="breadcrumb-item" onclick="navigate('home')">Home</span>
+                    <span class="breadcrumb-sep">›</span>
+                    <span>Wishlist</span>
+                </div>
+                <div class="section-header" style="margin-bottom:40px">
+                    <div>
+                        <h1 class="section-title">My Wishlist</h1>
+                        <p class="section-sub" id="wishlist-subtitle">Items you've saved for later</p>
+                    </div>
+                </div>
+                <div class="wishlist-grid" id="wishlist-grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== PAGE: TRACKING ===================== -->
+    <div id="page-tracking" class="page">
+        <div style="padding-top:var(--nav-h)">
+            <div class="container" style="padding-top:24px;padding-bottom:80px;max-width:800px">
+                <h1 class="section-title" style="margin-bottom:8px">Track Your Order</h1>
+                <p style="color:var(--text2);margin-bottom:40px">Enter your order ID to see real-time updates</p>
+                <div style="display:flex;gap:12px;margin-bottom:48px;max-width:500px">
+                    <input class="form-input" placeholder="e.g. LS-2025-48291" style="flex:1;background:var(--surface)"
+                        id="tracking-input">
+                    <button class="btn btn-primary" onclick="trackOrder()">Track →</button>
+                </div>
+                <div class="tracking-card" id="tracking-card">
+                    <div
+                        style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:12px">
+                        <div>
+                            <div style="font-size:13px;color:var(--text2);margin-bottom:4px">Order ID</div>
+                            <div style="font-size:18px;font-weight:600">LS-2025-48291</div>
+                        </div>
+                        <span class="tag tag-accent">In Transit</span>
+                    </div>
+                    <div style="font-size:14px;color:var(--text2);margin-bottom:4px">Estimated Delivery</div>
+                    <div style="font-size:16px;font-weight:600;color:var(--green);margin-bottom:8px">Thursday, May 15,
+                        2025</div>
+                    <div class="track-steps">
+                        <div class="track-step done">
+                            <div class="track-step-dot">✓</div>
+                            <div class="track-step-label">Order Placed</div>
+                            <div class="track-step-date">May 10</div>
+                        </div>
+                        <div class="track-step done">
+                            <div class="track-step-dot">✓</div>
+                            <div class="track-step-label">Confirmed</div>
+                            <div class="track-step-date">May 10</div>
+                        </div>
+                        <div class="track-step current">
+                            <div class="track-step-dot">🚚</div>
+                            <div class="track-step-label">In Transit</div>
+                            <div class="track-step-date">May 13</div>
+                        </div>
+                        <div class="track-step">
+                            <div class="track-step-dot">📦</div>
+                            <div class="track-step-label">Out for Delivery</div>
+                            <div class="track-step-date">May 15</div>
+                        </div>
+                        <div class="track-step">
+                            <div class="track-step-dot">🏠</div>
+                            <div class="track-step-label">Delivered</div>
+                            <div class="track-step-date">—</div>
+                        </div>
+                    </div>
+                    <div style="background:var(--bg2);border-radius:12px;padding:20px;margin-top:24px">
+                        <h4 style="font-size:14px;font-weight:600;margin-bottom:16px">Delivery Updates</h4>
+                        <div style="display:grid;gap:12px">
+                            <div style="display:flex;gap:12px;font-size:13px"><span
+                                    style="color:var(--accent);font-weight:600;flex-shrink:0">May 13, 14:30</span><span
+                                    style="color:var(--text2)">Package arrived at distribution center in Mumbai,
+                                    IN</span></div>
+                            <div style="display:flex;gap:12px;font-size:13px"><span
+                                    style="color:var(--text3);flex-shrink:0">May 12, 09:15</span><span
+                                    style="color:var(--text2)">Package departed from warehouse in Delhi</span></div>
+                            <div style="display:flex;gap:12px;font-size:13px"><span
+                                    style="color:var(--text3);flex-shrink:0">May 10, 16:00</span><span
+                                    style="color:var(--text2)">Order confirmed and processing</span></div>
+                            <div style="display:flex;gap:12px;font-size:13px"><span
+                                    style="color:var(--text3);flex-shrink:0">May 10, 11:30</span><span
+                                    style="color:var(--text2)">Order placed successfully</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== PAGE: ADMIN ===================== -->
+    <div id="page-admin" class="page">
+        <div class="admin-layout">
+            <aside class="admin-sidebar">
+                <div style="padding:0 24px 24px;border-bottom:1px solid var(--border);margin-bottom:8px">
+                    <div style="font-family:var(--font-display);font-size:20px;font-weight:700">Luxe<span
+                            style="color:var(--accent)">Admin</span></div>
+                    <div style="font-size:12px;color:var(--text2);margin-top:4px">Management Dashboard</div>
+                </div>
+                <div class="admin-nav-section">Main</div>
+                <div class="admin-nav-item active"><span class="admin-nav-icon">📊</span>Dashboard</div>
+                <div class="admin-nav-item"><span class="admin-nav-icon">🛍</span>Products</div>
+                <div class="admin-nav-item"><span class="admin-nav-icon">📦</span>Orders</div>
+                <div class="admin-nav-item"><span class="admin-nav-icon">👥</span>Customers</div>
+                <div class="admin-nav-section">Content</div>
+                <div class="admin-nav-item"><span class="admin-nav-icon">🏷</span>Categories</div>
+                <div class="admin-nav-item"><span class="admin-nav-icon">🎯</span>Promotions</div>
+                <div class="admin-nav-item"><span class="admin-nav-icon">⭐</span>Reviews</div>
+                <div class="admin-nav-section">Settings</div>
+                <div class="admin-nav-item"><span class="admin-nav-icon">⚙️</span>Settings</div>
+                <div class="admin-nav-item"><span class="admin-nav-icon">🔒</span>Security</div>
+            </aside>
+            <div class="admin-content">
+                <div class="admin-header">
+                    <div>
+                        <div class="admin-title">Dashboard</div>
+                        <div style="font-size:14px;color:var(--text2);margin-top:4px">Wednesday, May 13, 2025</div>
+                    </div>
+                    <div style="display:flex;gap:12px">
+                        <button class="btn btn-secondary">Export Report</button>
+                        <button class="btn btn-primary" onclick="navigate('listing')">+ Add Product</button>
+                    </div>
+                </div>
+
+                <!-- KPI CARDS -->
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <span class="kpi-icon">💰</span>
+                        <div class="kpi-val">$84,291</div>
+                        <div class="kpi-label">Revenue (This Month)</div>
+                        <div class="kpi-change up">↑ 18.3% vs last month</div>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-icon">🛒</span>
+                        <div class="kpi-val">1,429</div>
+                        <div class="kpi-label">Total Orders</div>
+                        <div class="kpi-change up">↑ 12.1% vs last month</div>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-icon">👥</span>
+                        <div class="kpi-val">9,841</div>
+                        <div class="kpi-label">New Customers</div>
+                        <div class="kpi-change up">↑ 8.7% vs last month</div>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-icon">📊</span>
+                        <div class="kpi-val">$58.93</div>
+                        <div class="kpi-label">Avg. Order Value</div>
+                        <div class="kpi-change down">↓ 2.4% vs last month</div>
+                    </div>
+                </div>
+
+                <div class="admin-grid-2">
+                    <!-- Chart -->
+                    <div class="admin-card">
+                        <div class="admin-card-title">
+                            <span>Revenue Overview</span>
+                            <span style="font-size:13px;color:var(--text2);font-weight:400">Last 7 days</span>
+                        </div>
+                        <div class="chart-bars" id="admin-chart"></div>
+                    </div>
+
+                    <!-- Recent Orders -->
+                    <div class="admin-card">
+                        <div class="admin-card-title">Recent Orders</div>
+                        <table class="orders-table">
+                            <thead>
+                                <tr>
+                                    <th>Order</th>
+                                    <th>Customer</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#LS-1042</td>
+                                    <td>Priya S.</td>
+                                    <td>$219</td>
+                                    <td><span class="status-badge status-delivered">Delivered</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#LS-1041</td>
+                                    <td>Raj K.</td>
+                                    <td>$87</td>
+                                    <td><span class="status-badge status-processing">Processing</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#LS-1040</td>
+                                    <td>Aisha M.</td>
+                                    <td>$445</td>
+                                    <td><span class="status-badge status-pending">Pending</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#LS-1039</td>
+                                    <td>Chen L.</td>
+                                    <td>$132</td>
+                                    <td><span class="status-badge status-delivered">Delivered</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#LS-1038</td>
+                                    <td>Sam P.</td>
+                                    <td>$68</td>
+                                    <td><span class="status-badge status-cancelled">Cancelled</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Top Products -->
+                <div class="admin-card">
+                    <div class="admin-card-title">
+                        <span>Top Selling Products</span>
+                        <button class="btn btn-ghost" style="font-size:13px">View All →</button>
+                    </div>
+                    <div id="admin-top-products"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== ORDER SUCCESS PAGE ===================== -->
+    <div id="page-success" class="page">
+        <div style="padding-top:var(--nav-h);min-height:100vh;display:flex;align-items:center;justify-content:center">
+            <div style="text-align:center;padding:60px 40px;max-width:520px">
+                <div style="font-size:80px;margin-bottom:24px;animation:bounceIn 0.6s ease">🎉</div>
+                <h1 style="font-family:var(--font-display);font-size:48px;font-weight:600;margin-bottom:12px">Order
+                    Placed!</h1>
+                <p style="font-size:16px;color:var(--text2);margin-bottom:8px">Thank you for your order. We've sent a
+                    confirmation to your email.</p>
+                <div
+                    style="background:var(--bg2);border-radius:16px;padding:20px;margin:32px 0;display:inline-block;min-width:280px">
+                    <div style="font-size:13px;color:var(--text2);margin-bottom:4px">Order Number</div>
+                    <div style="font-size:22px;font-weight:700;color:var(--accent);font-family:var(--font-display)">
+                        LS-2025-48291</div>
+                </div>
+                <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+                    <button class="btn btn-primary" onclick="navigate('tracking')">Track Order 📦</button>
+                    <button class="btn btn-secondary" onclick="navigate('home')">Continue Shopping</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
